@@ -8,6 +8,8 @@ function RoutineRunner({ routine, onComplete, onCancel }) {
     const [modalAction, setModalAction] = useState(null);
     const [isPaused, setIsPaused] = useState(false);
     const timerIntervalRef = useRef(null);
+    // お疲れ様モーダルの表示状態
+    const [showCompletionModal, setShowCompletionModal] = useState(false);
 
     // 現在のタスクと次のタスクを取得
     const currentTask = routine.tasks[currentTaskIndex];
@@ -91,11 +93,18 @@ function RoutineRunner({ routine, onComplete, onCancel }) {
             setCurrentTaskIndex(prev => prev + 1);
         } else if (modalAction === 'complete') {
             stopTimer(); // タイマーを停止
-            onComplete();
+            // お疲れ様モーダルを表示
+            setShowCompletionModal(true);
         } else if (modalAction === 'cancel') {
             stopTimer(); // タイマーを停止
             onCancel();
         }
+    };
+
+    // お疲れ様モーダルを閉じて完了を通知
+    const handleCompletionClose = () => {
+        setShowCompletionModal(false);
+        onComplete();
     };
 
     // 残り時間を表示用に変換
@@ -146,6 +155,7 @@ function RoutineRunner({ routine, onComplete, onCancel }) {
                 )}
             </div>
 
+            {/* 確認モーダル */}
             <ConfirmModal
                 isOpen={isModalOpen}
                 onConfirm={handleConfirm}
@@ -158,6 +168,20 @@ function RoutineRunner({ routine, onComplete, onCancel }) {
                             : "ルーティンを中止しますか？"
                 }
             />
+
+            {/* お疲れ様モーダル */}
+            {showCompletionModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content completion-modal">
+                        <h2>お疲れ様でした！</h2>
+                        <p>本日のモーニングルーティンを完了しました。</p>
+                        <p className="completion-message">素晴らしい一日のスタートです！</p>
+                        <div className="modal-buttons">
+                            <button onClick={handleCompletionClose} className="close-button">閉じる</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

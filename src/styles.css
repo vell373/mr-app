@@ -68,6 +68,7 @@ button {
 
 input {
   font-family: inherit;
+  font-size: 1rem;
   border: 2px solid var(--light-gray);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
@@ -82,7 +83,6 @@ input:focus {
 
 /* ===== アプリ全体のレイアウト ===== */
 .app {
-  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
@@ -91,8 +91,6 @@ input:focus {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* 最大幅を設定し、それ以上は拡大しない */
-  max-width: 500px;
   /* アスペクト比を維持しながら中央配置 */
   box-sizing: border-box;
 }
@@ -111,7 +109,6 @@ input:focus {
   bottom: 0;
   left: 0;
   right: 0;
-  max-width: 500px;
   width: 100%;
   margin: 0 auto;
   background-color: var(--white);
@@ -172,12 +169,13 @@ input:focus {
 }
 
 .routine-info {
+  font-size: 1.2rem;
   background-color: var(--light-gray);
   padding: 1.5rem;
   border-radius: var(--radius-md);
   margin-bottom: 2.5rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -189,12 +187,20 @@ input:focus {
 .start-button {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
   color: var(--white);
-  padding: clamp(0.75rem, 3vw, 1rem) clamp(1.5rem, 6vw, 2.5rem);
-  font-size: clamp(1rem, 3vw, 1.125rem);
-  border-radius: 50px;
+  /* 幅と高さを同じ値に設定 */
+  width: clamp(18rem, 20vw, 20rem);
+  height: clamp(18rem, 20vw, 20rem);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: var(--shadow-md);
-  transform: translateY(0);
   animation: pulse 2s infinite;
+}
+
+.start-button svg,
+.start-button .material-icons {
+  font-size: 12rem; /* アイコンサイズの調整 */
 }
 
 .start-button:hover {
@@ -210,6 +216,26 @@ input:focus {
   max-width: 300px;
 }
 
+/* 応援メッセージのスタイル */
+.encouraging-message {
+  margin-top: 5rem;
+  color: var(--black);
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 600;
+  animation: fadeIn 1s ease-in;
+  max-width: 50rem;
+  line-height: 1.6;
+  padding: 0.5rem 1rem;
+  background-color: rgba(93, 95, 239, 0.05);
+  border-radius: var(--radius-md);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ===== ルーティン設定タブ ===== */
 .routine-tab {
   padding: 1rem 0;
@@ -218,8 +244,8 @@ input:focus {
 .setting-section {
   background-color: var(--white);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   box-shadow: var(--shadow-sm);
 }
 
@@ -326,7 +352,8 @@ input:focus {
   padding: 1rem 1.5rem;
   border-radius: var(--radius-sm);
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
   font-size: 1rem;
   box-shadow: var(--shadow-sm);
 }
@@ -396,17 +423,17 @@ input:focus {
 }
 
 .stat-icon-trophy {
-  font-size: 1.75rem;
+  font-size: clamp(2rem, 3vw, 10rem);
   color: #FFD700; /* 金色 */
 }
 
 .stat-icon-fire {
-  font-size: 1.75rem;
+  font-size: clamp(2rem, 3vw, 10rem);
   color: #FF4500; /* 赤色 */
 }
 
 .stat-icon-medal {
-  font-size: 1.75rem;
+  font-size: clamp(2rem, 3vw, 10rem);
   color: #4169E1; /* 青色 */
 }
 
@@ -418,7 +445,7 @@ input:focus {
 }
 
 .stat-value {
-  font-size: clamp(1.2rem, 5vw, 1.5rem);
+  font-size: clamp(1.5rem, 10vw, 2rem);
   font-weight: 700;
   line-height: 1.2;
 }
@@ -870,4 +897,101 @@ input:focus {
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
+}
+
+/* バックアップ・リストア機能のスタイル */
+.backup-restore-container {
+  width: 100%;
+}
+
+.backup-section, .restore-section {
+  margin-bottom: 1.5rem;
+}
+
+.backup-section p, .restore-section p {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.backup-button {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  width: 100%;
+}
+
+.backup-button:hover {
+  background-color: var(--primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+.restore-button {
+  background-color: var(--gray);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  width: 100%;
+}
+
+.restore-button:hover {
+  background-color: var(--dark);
+  box-shadow: var(--shadow-md);
+}
+
+/* 完了モーダルのスタイル */
+.completion-modal {
+  background: linear-gradient(to right bottom, #ffffff, #f8f9ff);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+.completion-modal h2 {
+  color: var(--success);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.completion-modal p {
+  color: var(--dark);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.streak-message {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: rgba(93, 95, 239, 0.1);
+  border-radius: var(--radius-md);
+}
+
+.completion-modal .modal-buttons {
+  margin-top: 2rem;
+}
+
+.completion-modal .modal-buttons button {
+  background-color: var(--success);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.completion-modal .modal-buttons button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }

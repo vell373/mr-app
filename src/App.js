@@ -77,9 +77,30 @@ function App() {
     setIsRunning(false);
   };
 
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  // オンライン/オフラインステータスの監視
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
   return (
     <Router>
       <div className="app">
+        {!isOnline && (
+          <div className="offline-notification">
+            現在オフラインモードで動作しています
+          </div>
+        )}
         {isRunning ? (
           <RoutineRunner
             routine={routine}

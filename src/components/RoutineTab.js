@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// react-iconsからゴミ箱アイコンをインポート
+import BackupRestoreComponent from './BackupRestoreComponent';
 import { FaTrash, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 function RoutineTab({ routine, setRoutine }) {
@@ -89,7 +89,7 @@ function RoutineTab({ routine, setRoutine }) {
 
     return (
         <div className="routine-tab">
-            <h1>モーニングルーティン設定</h1>
+            <h1>ルーティン設定</h1>
 
             <div className="setting-section">
                 <h2>開始時間</h2>
@@ -157,6 +157,12 @@ function RoutineTab({ routine, setRoutine }) {
             <button className="save-button" onClick={handleSave}>
                 ルーティンを保存
             </button>
+
+            <div className="setting-section">
+                <h2>データのバックアップと復元</h2>
+                <BackupRestoreComponent />
+            </div>
+
         </div>
     );
 }
