@@ -187,10 +187,9 @@ input:focus {
 .start-button {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
   color: var(--white);
-  /* 幅と高さを同じ値に設定 */
-  width: clamp(15rem, 20vw, 20rem);
-  height: clamp(15rem, 20vw, 20rem);
-  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,7 +199,7 @@ input:focus {
 
 .start-button svg,
 .start-button .material-icons {
-  font-size: 12rem; /* アイコンサイズの調整 */
+  font-size: 8rem; /* アイコンサイズの調整 */
 }
 
 .start-button:hover {
@@ -423,17 +422,17 @@ input:focus {
 }
 
 .stat-icon-trophy {
-  font-size: clamp(2rem, 3vw, 10rem);
+  font-size: 2rem;
   color: #FFD700; /* 金色 */
 }
 
 .stat-icon-fire {
-  font-size: clamp(2rem, 3vw, 10rem);
+  font-size: 2rem;
   color: #FF4500; /* 赤色 */
 }
 
 .stat-icon-medal {
-  font-size: clamp(2rem, 3vw, 10rem);
+  font-size: 2rem;
   color: #4169E1; /* 青色 */
 }
 
@@ -500,7 +499,7 @@ input:focus {
 
 .react-calendar__navigation button {
   color: white !important;
-  min-width: 44px;
+  min-width: 35px;
   background: none;
   font-size: 1.25rem;
   margin: 0 5px;
@@ -735,7 +734,6 @@ input:focus {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
-  width: 90%;
 }
 
 .task-controls button {
@@ -834,11 +832,11 @@ input:focus {
   .stats-cards .stat-card h3 {
     font-size: 0.75rem;
   }
-  
+
   .stats-cards .stat-value {
     font-size: 1.5rem;
   }
-  
+
   .calendar-container-compact .react-calendar__tile {
     padding: 0.25rem 0;
   }
