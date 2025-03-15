@@ -7,13 +7,12 @@ function CalendarTab({ completionStats }) {
     const { record, totalDays, currentStreak, longestStreak } = completionStats;
     const isBreakingRecord = currentStreak >= longestStreak && currentStreak > 0;
 
-    // 日付が完了しているかどうかを判定する関数
+    // 日付判定などの関数は変更なし
     const isCompleted = (date) => {
         const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
         return record[dateString];
     };
 
-    // 日付のクラスを設定するカスタム関数
     const tileClassName = ({ date, view }) => {
         if (view === 'month') {
             if (isCompleted(date)) {
@@ -29,7 +28,6 @@ function CalendarTab({ completionStats }) {
         return null;
     };
 
-    // 日付の内容をカスタマイズする関数
     const tileContent = ({ date, view }) => {
         if (view === 'month' && isCompleted(date)) {
             return <div className="completion-stamp">✓</div>;
@@ -50,7 +48,6 @@ function CalendarTab({ completionStats }) {
                             <div className="stat-value">{totalDays}日</div>
                         </div>
                     </div>
-                    {isBreakingRecord && <div className="record-badge">記録更新中！</div>}
                 </div>
 
                 <div className="stat-card streak">
@@ -63,7 +60,7 @@ function CalendarTab({ completionStats }) {
                     </div>
                 </div>
 
-                <div className="stat-card best-streak">
+                <div className="stat-card best-streak sct">
                     <div className="stat-icon-container">
                         <FaMedal className="stat-icon-medal" />
                         <div className="stat-content">
@@ -71,6 +68,7 @@ function CalendarTab({ completionStats }) {
                             <div className="stat-value">{longestStreak}日</div>
                         </div>
                     </div>
+                    {isBreakingRecord && <div className="record-badge">記録更新中！</div>}
                 </div>
             </div>
 

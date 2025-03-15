@@ -13,7 +13,7 @@ function TabNavigator() {
                 ルーティン
             </NavLink>
             <NavLink to="/calendar" className={location.pathname === '/calendar' ? 'active' : ''}>
-                カレンダー
+                記録
             </NavLink>
         </div>
     );
